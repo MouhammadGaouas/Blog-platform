@@ -8,6 +8,7 @@ function App() {
   const [showCreatePost , setShowCreatePost] = useState(false)
 
 
+
   return (
     <div className="min-h-screen bg-purple-100 flex items-center justify-center">
       <CreatePost visible = {showCreatePost} onClose ={() => setShowCreatePost(!showCreatePost)}/>

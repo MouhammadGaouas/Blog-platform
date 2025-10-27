@@ -1,6 +1,15 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 export const CreatePost = ({visible , onClose}) => {
+
+  const handleCreatePost = async () => {
+    const res = await axios.post("http://localhost:5000/api/newPost", {title , content})
+    console.log(res.data.message);
+  }
+
+  const [title , setTitle] = useState('')
+  const [content , setContent] = useState('')
 
 
   return (
@@ -17,6 +26,7 @@ export const CreatePost = ({visible , onClose}) => {
             id="title"
             className="block bg-gray-300 text-lg py-1 pl-2 rounded-lg resize-none"
             type="text"
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="mt-3">
@@ -27,12 +37,13 @@ export const CreatePost = ({visible , onClose}) => {
             className="block p-1 bg-gray-300 rounded-lg"
             name="content"
             id="content"
+            onChange={(e) => setContent(e.target.value) }
             rows={4}
             cols={50}
           ></textarea>
         </div>
         <div className="mt-4">
-          <button className="mt-4 bg-blue-400 text-white px-6 py-2 w-40 text-xl font-semibold rounded-sm cursor-pointer">
+          <button onClick={() => handleCreatePost()} className="mt-4 bg-blue-400 text-white px-6 py-2 w-40 text-xl font-semibold rounded-sm cursor-pointer">
             Post
           </button>
           <button onClick={onClose} className="mt-4 bg-red-400 text-white px-6 py-2 w-40 text-xl font-semibold ml-4 rounded-sm cursor-pointer">
