@@ -13,4 +13,16 @@ const createNewPost = async (req , res) => {
     }
 }
 
-module.exports = createNewPost ;
+const getallPosts = async (req , res) => {
+    try{
+        const post = await newPostSchema.find()
+        if(post){
+            return res.json({message: "Posts are finded successfully" , post})
+        }   
+    }catch(err){
+        console.error('Failed to get posts');
+    }
+}
+
+
+module.exports = {createNewPost , getallPosts} ;
